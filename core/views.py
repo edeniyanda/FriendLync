@@ -1,10 +1,12 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
+from django.contrib import auth
 from django.contrib import messages
 from .models import Profile
-from django.contrib import auth
-# Create your views here.
+from django.contrib.auth.decorators import login_required
 
+
+@login_required(login_url="signin")
 def index(request):
     return render(request, 'index.html')
 
@@ -36,7 +38,7 @@ def signup(request):
             return redirect("signup")
     else:
         return render(request, "signup.html")
-    
+   
 def signin(request):
     if request.method == "POST":
         username = request.POST["username"]
@@ -50,3 +52,8 @@ def signin(request):
         messages.info(request, "Invalid Username or Password")
         return redirect("signin")
     return render(request, "signin.html")
+
+@login_required(login_url="signin")
+def logout(request):
+    auth.logout(request)
+    return redirect("signin")
