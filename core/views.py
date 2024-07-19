@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
-
+from .models import Profile
 # Create your views here.
 
 def index(request):
@@ -20,13 +20,21 @@ def signup(request):
                 messages.info(request, "Email Already Taken")
                 return redirect("signup")
             elif User.objects.filter(username=username).exists():
-                messages.info.exists(request, "Username Already Taken")
+                messages.info(request, "Username Already Taken")
                 return redirect("signup")
             else:
                 user = User.objects.create_user(username=username, email=email, password=confirmpassword)
                 user.save()
+
+                user_model = User.objects.get(username=username)
+                new_profile = Profile.objects.create(user = user_model, id_user = user_model.id)
+                new_profile.save()
+                return redirect("signin")
         else:
             messages.info(request, "Password doesn't Match")
             return redirect("signup")
     else:
         return render(request, "signup.html")
+    
+def signin(request):
+    return render(request, "signin.html")
