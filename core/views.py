@@ -8,7 +8,10 @@ from django.contrib.auth.decorators import login_required
 
 @login_required(login_url="signin")
 def index(request):
-    return render(request, 'index.html')
+    user_profile = Profile.objects.get(user=request.user)
+    return render(request, 'index.html', {
+        "user_profile" : user_profile
+    })
 
 def signup(request):
 
