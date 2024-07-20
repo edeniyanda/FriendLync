@@ -191,27 +191,33 @@
                         <p></p>
                     </div>
                     <div class="bg-white rounded-md lg:shadow-lg shadow col-span-2">
-    
+                    <form action="" method="POST">
+                        {% csrf_token %}
                        <div class="grid grid-cols-2 gap-3 lg:p-6 p-4">
+                           <div class="col-span-2">
+                               <label for="">Profile Image</label>
+                               <img style="margin-bottom: 20px;" src="{{user_profile.profile_img.url}}" alt="Image"/>
+                               <input type="file" name="Image" value="{{user_profile.profile_img}}" placeholder="Your" class="shadow-none bg-gray-100">
+                           </div>
                            <div>
                                <label for=""> First name</label>
                                <input type="text" name="firstname" placeholder="Your name.." class="shadow-none bg-gray-100">
                            </div>
                            <div>
                                <label for=""> Last name</label>
-                               <input type="text" name="lastname" placeholder="Your name.." class="shadow-none bg-gray-100">
+                               <input type="text" name="lastname" value="" placeholder="Your name.." class="shadow-none bg-gray-100">
                             </div>
                             <div class="col-span-2">
                                 <label for=""> Email</label>
-                                <input type="text" name="email" placeholder="Your name.." class="shadow-none bg-gray-100">
+                                <input type="text" name="email" value=""Your name.." class="shadow-none bg-gray-100">
                             </div>
                             <div class="col-span-2">
                                 <label for="about">About me</label>  
-                                <textarea id="about" name="about" rows="3"  class="shadow-none bg-gray-100"></textarea>
+                                <textarea id="about" name="about" rows="3"  class="shadow-none bg-gray-100">{{user_profile.bio}}</textarea>
                             </div> 
                             <div class="col-span-2">
                                 <label for=""> Location</label>
-                                <input type="text" name="location" placeholder="" class="shadow-none bg-gray-100">
+                                <input type="text" name="location"  value="{{user_profile.location}}" class="shadow-none bg-gray-100">
                             </div>
                             <div>
                                <label for=""> Working at</label>
@@ -230,10 +236,10 @@
                        </div> 
     
                        <div class="bg-gray-10 p-6 pt-0 flex justify-end space-x-3">
-                           <button class="p-2 px-4 rounded bg-gray-50 text-red-500"> Cancel </button>
-                           <button type="button" class="button bg-blue-700"> Save </button>
+                           <button class="p-2 px-4 rounded bg-gray-50 text-red-500"> <a href="{% url 'home_page' %}"> Cancel </a></button>
+                           <button type="submit" class="button bg-blue-700"> Save </button>
                        </div>
-    
+                    </form>
                     </div>
 
                     <div>
