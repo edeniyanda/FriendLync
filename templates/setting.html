@@ -191,14 +191,14 @@
                         <p></p>
                     </div>
                     <div class="bg-white rounded-md lg:shadow-lg shadow col-span-2">
-                    <form action="" method="POST">
+                    <form action="" method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
                        <div class="grid grid-cols-2 gap-3 lg:p-6 p-4">
                            <div class="col-span-2">
-                               <label for="">Profile Image</label>
-                               <img style="margin-bottom: 20px;" src="{{user_profile.profile_img.url}}" alt="Image"/>
-                               <input type="file" name="Image" value="{{user_profile.profile_img}}" placeholder="Your" class="shadow-none bg-gray-100">
-                           </div>
+                                <label for="">Profile Image</label>
+                                <img style="margin-bottom: 20px; max-width: 100%; height: auto; object-fit: cover;" src="{{user_profile.profile_img.url}}" alt="Image"/>
+                                <input type="file" name="Image" value="{{user_profile.profile_img}}" placeholder="Your" class="shadow-none bg-gray-100">
+                            </div>
                            <div>
                                <label for=""> First name</label>
                                <input type="text" name="firstname" placeholder="Your name.." class="shadow-none bg-gray-100">
