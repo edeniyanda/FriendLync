@@ -10,10 +10,10 @@ from django.contrib.auth.decorators import login_required
 def index(request):
     user_profile = Profile.objects.get(user=request.user)
 
-    feed_list = Post.objects.all(reversed)
+    feed_list = Post.objects.all()
     return render(request, 'index.html', {
         "user_profile" : user_profile,
-        "posts" : feed_list 
+        "posts" : feed_list                                                         
     })
 
 def signup(request):
