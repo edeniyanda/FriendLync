@@ -50,17 +50,18 @@
                         <a href="#"
                             class="bg-pink-500 flex font-bold hidden hover:bg-pink-600 hover:text-white inline-block items-center lg:block max-h-10 mr-4 px-4 py-2 rounded shado text-white">
                             <ion-icon name="add-circle" class="-mb-1
-                             mr-1 opacity-90 text-xl uilus-circle"></ion-icon> Upload Pics / Videos
+                             mr-1 opacity-90 text-xl uilus-circle"></ion-icon> Upload Pics
                         </a>
                          <!-- upload dropdown box -->
                         <div uk-dropdown="pos: top-right;mode:click ; animation: uk-animation-slide-bottom-small" class="header_dropdown">
     
                             <!-- notivication header -->
                             <div class="px-4 py-3 -mx-5 -mt-4 mb-5 border-b">
-                                <h4>Upload Pics or Videos</h4>
+                                <h4>Upload Pics</h4>
                             </div>
     
                             <!-- notification contents -->
+                            <form action="" method="POST">
                             <div class="flex justify-center flex-center text-center">
     
                                 <div class="flex flex-col choose-upload text-center">
@@ -72,11 +73,12 @@
                                         </svg>
                                     </div>
 
-                                    <p class="my-3 leading-6"> Upload pics or videos <br> please upload her ..
+                                    <p class="my-3 leading-6"> Upload pics<br> Please upload her ..
                                     </p>
-                                    <div uk-form-custom>
-                                        <input type="file">
-                                        <a href="#" class="button soft-warning small"> Choose file</a>
+                                    <div>
+                                        <input type="file" name="image_upload">
+                                        
+                                        <textarea  class="button soft-warning small" name="caption" placeholder="Caption ..."></textarea>
                                     </div>
     
                                     <a href="#" class="uk-text-muted mt-3 uk-link"
@@ -104,6 +106,7 @@
                                 </div>
     
                             </div>
+                            </form>
                             <div class="px-4 py-3 -mx-5 -mb-4 mt-5 border-t text-sm">
                                 Your Video size Must be Maxmium 999MB
                             </div>
