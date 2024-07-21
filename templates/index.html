@@ -74,6 +74,7 @@
 
                                     <p class="my-3 leading-6"> Upload pics<br> Please upload her .. </p>
                                     <form action="" method="POST">
+                                        {% csrf_token %}
                                     <div>
                                         <input type="file" name="image_upload">
                                         <textarea  class="button soft-warning small" name="caption" placeholder="Caption ..."></textarea>
