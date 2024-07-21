@@ -1,8 +1,8 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 from django.contrib.auth.models import User
 from django.contrib import auth
 from django.contrib import messages
-from .models import Profile
+from .models import Profile, Post
 from django.contrib.auth.decorators import login_required
 
 
@@ -98,3 +98,16 @@ def settings(request):
     return render(request, "setting.html", {
         "user_profile" : user_profile
     })
+
+@login_required
+def upload(request):
+    if request.method == "POST":
+        user= request.user.username
+        image = request.FILES.get("image_uplod")
+        caption = request.POST["caption"]
+
+        new_post = Post.objects.create(user=user, image=image, caption=caption)
+
+        return redirect("index")
+    return redirect("index")
+    return HttpResponse("Upload File")
