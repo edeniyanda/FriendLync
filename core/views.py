@@ -104,7 +104,6 @@ def settings(request):
 
 @login_required
 def upload(request):
-    print("I made it here")
     if request.method == "POST":
         user= request.user.username
         image = request.FILES.get("image_upload")
@@ -113,6 +112,5 @@ def upload(request):
         new_post = Post.objects.create(user=user, image=image, caption=caption)
 
         new_post.save()
-        print("And I saved the Data")
         return redirect("home_page")
     return redirect("home_page")
