@@ -108,6 +108,7 @@ def upload(request):
 
         new_post = Post.objects.create(user=user, image=image, caption=caption)
 
+        new_post.save()
         return redirect("index")
     return redirect("index")
     return HttpResponse("Upload File")
