@@ -8,9 +8,12 @@ from django.contrib.auth.decorators import login_required
 
 @login_required(login_url="signin")
 def index(request):
-    user_profile = Profile.objects.get(user=request.user)
-
+    user_object = User.objects.get(username=request.user.username)
+    user_profile = Profile.objects.get(user=user_object)
     feed_list = Post.objects.all()
+    # for post in feed_list:
+    #     post_user_profile = Profile.objects.get(user=post.user)
+    #     post_user_img_url = print(post_user_profile.profile_img.url)
     return render(request, 'index.html', {
         "user_profile" : user_profile,
         "posts" : feed_list                                                         
