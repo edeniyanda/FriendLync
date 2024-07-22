@@ -114,3 +114,7 @@ def upload(request):
         new_post.save()
         return redirect("home_page")
     return redirect("home_page")
+
+@login_required
+def like_post(request):
+    return HttpResponse("This is liked ")
