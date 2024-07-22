@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, HttpResponse
 from django.contrib.auth.models import User
 from django.contrib import auth
 from django.contrib import messages
-from .models import Profile, Post
+from .models import Profile, Post, LikePost
 from django.contrib.auth.decorators import login_required
 
 
@@ -117,4 +117,22 @@ def upload(request):
 
 @login_required
 def like_post(request):
-    return HttpResponse("This is liked ")
+    username = request.user.username
+    post_id = request.GET.get("post_id")
+
+    post = Post.objects.get(id=post_id)
+
+    like_filter = LikePost.objects.filter(post_id=post_id, username=username).first()
+
+    if not like_filter:
+        new_like = LikePost.objects.create(post_id=post_id, username=username)
+        new_like.save()
+        post.no_of_likes += 1
+        post.save()
+
+        return redirect("home_page")
+    else:
+        like_filter.delete()
+        post.no_of_likes = post.no_of_likes - 1 if post.no_of_likes != 0 else 0
+        post.save()
+        return redirect("home_page")
