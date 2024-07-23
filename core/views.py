@@ -139,3 +139,7 @@ def like_post(request):
         post.no_of_likes = post.no_of_likes - 1 if post.no_of_likes != 0 else 0
         post.save()
         return redirect("home_page")
+
+@login_required
+def profile(request, pk):
+    return render(request, "profile.html")
