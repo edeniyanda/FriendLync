@@ -142,4 +142,14 @@ def like_post(request):
 
 @login_required
 def profile(request, pk):
-    return render(request, "profile.html")
+    user_object = User.objects.get(username=pk)
+    user_profile = Profile.objects.get(user=user_object)
+    user_post = Post.objects.filter(user=pk)
+    user_post_lenght = len(user_post)
+    context = {
+        "user_object" : user_object,
+       'user_profile' : user_profile,
+       "user_post" : user_post,
+       "user_post_lenght" : user_post_lenght,
+    }
+    return render(request, "profile.html", context)
